@@ -28,7 +28,7 @@ class DatePicker extends Component {
 	toggleOveraly = () => this.setState({visible: false});
 
 	handleRangeChange(which, payload) {
-    console.log('which', which, 'payload', payload);
+    // console.log('which', which, 'payload', payload);
     this.setState({
       [which]: {
         ...this.state[which],
