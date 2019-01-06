@@ -7,7 +7,7 @@ import classes from './SearchForm.css'
 
 function formatDateDisplay(date, defaultText) {
   if (!date) return defaultText;
-  return format(date, 'DD-MM-YYYY');
+  return format(date, 'YYYY-MM-DD');
 }
 
 class SearchForm extends Component {
@@ -69,7 +69,17 @@ class SearchForm extends Component {
         </Container>
 			  <div className={visible ? [classes.DateBox, classes.open].join(' ') : classes.DateBox}>
 						<DateRange
-              onChange={(e) => this.handleRangeChange('dateRangePicker', e)}
+              onChange={(e) => {
+                console.log('testi');
+                let strDate = formatDateDisplay(this.state.dateRangePicker.selection.startDate);
+                let endDate = formatDateDisplay(this.state.dateRangePicker.selection.endDate);
+                this.props.dateRange(strDate, endDate);
+                this.handleRangeChange('dateRangePicker', e);
+              }
+              }
+              onClick={
+                () => console.log('hah')
+              }
 							showSelectionPreview={false}
 							moveRangeOnFirstSelection={false}
 							months={2}
