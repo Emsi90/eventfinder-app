@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import SearchForm from '../../components/UI/SearchForm/SearchForm';
+import SearchForm from '../../components/SearchForm/SearchForm';
+import EventsList from '../../components/EventsList/EventsList';
 import { format } from 'date-fns';
 
 function formatDateDisplay(date, defaultText) {
@@ -55,7 +56,8 @@ class EventFinder extends Component {
   }
 
   fetchDataHandler = () => {
-    fetch(`https://rest.bandsintown.com/artists/${this.state.searchValue}/events?app_id=8cd32220-ea94-4c7a-a074-ec271e841187&date=${this.state.startDate}%2C${this.state.endDate}`)
+    // fetch(`https://rest.bandsintown.com/artists/${this.state.searchValue}/events?app_id=8cd32220-ea94-4c7a-a074-ec271e841187&date=${this.state.startDate}%2C${this.state.endDate}`)
+    fetch(`https://rest.bandsintown.com/artists/maroon5/events?app_id=8cd32220-ea94-4c7a-a074-ec271e841187&date=2019-01-01%2C2019-03-01`)
     .then(response => response.json())
     .then(json => this.setState({data: json}))
     .catch(error => console.log(error));
@@ -73,9 +75,9 @@ class EventFinder extends Component {
   }
 
   render() {
-    console.log('data', this.state.data);
-    console.log('start', this.state.startDate);
-    console.log('end', this.state.endDate);
+    // console.log('data', this.state.data);
+    // console.log('start', this.state.startDate);
+    // console.log('end', this.state.endDate);
     return (
       <div>
         <SearchForm 
@@ -85,6 +87,7 @@ class EventFinder extends Component {
           dateRange={(startDate, endDate) => this.dateRangeHandler(startDate, endDate)}
           isLoading={this.state.isLoading}
           submit={this.formSubmitHandler} />
+        <EventsList data={this.state.data} />  
       </div>
     );
   }

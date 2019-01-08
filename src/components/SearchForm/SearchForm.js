@@ -46,7 +46,7 @@ class SearchForm extends Component {
         <Container>
           <Form onSubmit={this.props.submit}>
             <Form.Group style={{justifyContent: 'center'}}>
-              <Form.Input width={6} loading name='searchValue' value={this.props.searchValue} onChange={this.props.searchChange} placeholder='Search...' />
+              <Form.Input width={6} name='searchValue' value={this.props.searchValue} onChange={this.props.searchChange} placeholder='Search...' />
 
               <Form.Input 
               className={classes.ExtraMargin}
