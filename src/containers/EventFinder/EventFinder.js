@@ -12,7 +12,7 @@ class EventFinder extends Component {
 
   state = {
     searchValue: '',
-    startDate: '',
+    startDate: 'asd',
     endDate: '',
     
     // Test state
@@ -28,7 +28,7 @@ class EventFinder extends Component {
 
   inputValueHandler = (e) => {
     this.setState({[e.target.name]: e.target.value});
-    console.log('target', e.target.value);
+    // console.log('target', e.target.value);
   }
 
   dateRangeHandler = (startDateTest, endDateTest) => {
@@ -39,24 +39,36 @@ class EventFinder extends Component {
   searchParamsHandler = (params) => {
     const query = params;
     for(let item of query.entries()) {
-      console.log(item);
+      // console.log(item);
       if(item[0] === 'startDate') {
         this.setState({startDate: formatDateDisplay(item[1])});
-        console.log('d1', item[1]);
+        // console.log('d1', item[1]);
       } else if(item[0] === 'endDate') {
-        console.log('d2', item[1]);
-        this.setState({endDate: item[1]});
+        // console.log('d2', item[1]);
+        this.setState({endDate: item[1]}, () => {
+          console.log('callback');
+          this.fetchDataHandler();
+        }
+        );
       }
     }
+  }
+
+  fetchDataHandler = () => {
+    fetch(`https://rest.bandsintown.com/artists/${this.state.searchValue}/events?app_id=8cd32220-ea94-4c7a-a074-ec271e841187&date=${this.state.startDate}%2C${this.state.endDate}`)
+    .then(response => response.json())
+    .then(json => this.setState({data: json}))
+    .catch(error => console.log(error));
   }
 
   formSubmitHandler = (e) => {
     e.preventDefault();
     this.searchParamsHandler(new URLSearchParams(new FormData(e.target)));
-    fetch(`https://rest.bandsintown.com/artists/${this.state.searchValue}/events?app_id=8cd32220-ea94-4c7a-a074-ec271e841187&date=${this.state.startDate}%2C${this.state.endDate}`)
-    .then(response => response.json())
-    .then(json => this.setState({data: json}))
-    .catch(error => console.log(error));
+    // console.log('statedat', this.state.startDate);
+    // fetch(`https://rest.bandsintown.com/artists/${this.state.searchValue}/events?app_id=8cd32220-ea94-4c7a-a074-ec271e841187&date=${this.state.startDate}%2C${this.state.endDate}`)
+    // .then(response => response.json())
+    // .then(json => this.setState({data: json}))
+    // .catch(error => console.log(error));
     // console.log('test1');
   }
 
