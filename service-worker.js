@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/eventfinder-app/precache-manifest.7d39f32e8699791f18ddddb2cc907efc.js"
+  "/eventfinder-app/precache-manifest.7da0e7e7bf501d64d509118130b7b5e6.js"
 );
 
 workbox.clientsClaim();
