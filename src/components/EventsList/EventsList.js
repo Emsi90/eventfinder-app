@@ -5,12 +5,11 @@ import classes from './EventList.css';
 import { Container } from 'semantic-ui-react';
 
 const eventsList = (props) => {
-  
-  const data = props.data;
-  
-  console.log('dataaa');
-  console.log('data', data);
 
+  console.log(props.artistData);
+  console.log(props.data);
+
+  const data = props.data;
 
   const eventItem = data => {
     const artist = data.lineup[0];
