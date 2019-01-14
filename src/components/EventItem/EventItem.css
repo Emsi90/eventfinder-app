@@ -1,9 +1,157 @@
 .eventItem {
-  margin: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 50px 0;
   padding: 30px;
   width: 100%;
   list-style: none;
-  background: #20232a;
-  box-shadow: 0 0 20px 0px rgb(33, 36, 44);
+  background-image: linear-gradient(to bottom, #282c34, #2b2f37);
+  /* background-color: #2b2f37; */
+  box-shadow: 0px 11px 20px 0px rgba(30, 30, 30, 0.3);
   box-sizing: border-box;
+}
+
+.BoxLeft {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.BoxRight {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.artistInfo {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.artistHeader {
+  font-family: 'Roboto', sans-serif;
+  text-align: left;
+  font-size: 45px;
+  font-weight: 100;
+}
+
+.media {
+  display: flex;
+}
+
+a.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  font-size: 14px;
+  color: #FFF;
+  margin-right: 20px;
+}
+
+a.link:hover {
+  color: #2185d0;
+}
+.link i {
+  padding-right: 5px;
+  font-size: 16px;
+}
+
+.date {
+  font-size: 19px;
+  font-weight: 100;
+  margin-bottom: 15px;
+}
+
+.date .bold {
+  font-weight: 400;
+}
+
+.city {
+  font-size: 35px;
+  font-weight: 100;
+  margin-bottom: 15px;
+}
+
+.place {
+  font-size: 16px;
+  font-weight: 300;
+  margin-bottom: 25px;
+}
+
+.tickets {
+  display: flex;
+  align-self: flex-end;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.statusOk, .statusNo {
+  position: relative;
+  display: block;
+  font-size: 14px;
+  font-weight: 100;
+  margin-right: 20px;
+}
+
+.statusOk::before, .statusNo::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -20px;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.statusOk {
+  color: #21ba45;
+}
+
+.statusOk::before {
+  background: #21ba45;
+  /* box-shadow: 0 0 10px 0 #21ba45; */
+  animation: pulseOk 2s infinite;
+}
+
+.statusNo {
+ color: #db2828;
+}
+
+.statusNo::before {
+  background: #db2828;
+  animation: pulseNo 2s infinite;
+}
+
+@keyframes pulseOk {
+  0% {
+    box-shadow: 0 0 0px 0 #21ba45;
+  }
+
+  50% {
+    box-shadow: 0 0 15px 0 #21ba45;
+  }
+
+  100% {
+    box-shadow: 0 0 0px 0 #21ba45;
+  }
+}
+
+@keyframes pulseNo {
+  0% {
+    box-shadow: 0 0 0px 0 #21ba45;
+  }
+
+  50% {
+    box-shadow: 0 0 15px 0 #21ba45;
+  }
+
+  100% {
+    box-shadow: 0 0 0px 0 #21ba45;
+  }
 }
