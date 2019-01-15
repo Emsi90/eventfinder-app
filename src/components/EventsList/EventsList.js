@@ -7,11 +7,11 @@ import { Container } from 'semantic-ui-react';
 const eventsList = (props) => {
 
   console.log(props.artistData);
-  console.log(props.data);
-
+  console.log('dataaa', props.data);
   const {data, artistData} = props;
 
   const eventItem = data => {
+
     const artist = data.lineup[0];
     const artistImg = artistData.thumb_url;
     const artistUrl = artistData.url;
@@ -25,6 +25,7 @@ const eventsList = (props) => {
     const ticketsStatus = data.offers[0].status;
     const ticketsUrl = data.offers[0].url;
     const venueUrl = data.url;
+
     return <EventItem
       key={data.id}
       artist={artist}
@@ -45,7 +46,9 @@ const eventsList = (props) => {
   return(
     <Container>
       <ul className={classes.eventList}>
-        {data !== null && artistData !== null ? data.map(eventItem) : 'Please search artist...'}
+        {Array.isArray(data) && artistData !== null ? data.map(eventItem) : 
+          data !== null && data.hasOwnProperty('errorMessage') ? data.errorMessage : 'Please search artist...'}
+          {Array.isArray(data) && data.length === 0 ? 'No events for this artist in this time range...' : null}
       </ul>
     </Container>
   );

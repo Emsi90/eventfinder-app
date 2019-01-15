@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { Dimmer, Loader } from 'semantic-ui-react'
 import SearchForm from '../../components/SearchForm/SearchForm';
 import EventsList from '../../components/EventsList/EventsList';
 import { format } from 'date-fns';
@@ -18,7 +19,9 @@ class EventFinder extends Component {
     isLoading: false,
     artist: '',
     data: null,
-    artistData: null
+    artistData: null,
+    errorMessage: null,
+    authorName: ''
   }
 
   inputValueHandler = (e) => {
@@ -52,25 +55,29 @@ class EventFinder extends Component {
   fetchDataHandler = () => {
     fetch(`https://rest.bandsintown.com/artists/${this.state.searchValue}/events?app_id=8cd32220-ea94-4c7a-a074-ec271e841187&date=${this.state.startDate}%2C${this.state.endDate}`)
     .then(response => response.json())
-    .then(json => this.setState({data: json}))
-    .catch(error => console.log(error));
+    .then(json => this.setState({data: json, isLoading: false}))
+    .catch(err => console.log('erah', err));
+    // .catch(error => this.setState({errorMessage: error, isLoading: false}));
 
     fetch(`https://rest.bandsintown.com/artists/${this.state.searchValue}?app_id=8cd32220-ea94-4c7a-a074-ec271e84118`)
     .then(response => response.json())
-    .then(json => this.setState({artistData: json}))
+    .then(json => this.setState({artistData: json, isLoading: false}))
     .catch(error => console.log(error));
 
   }
 
   formSubmitHandler = (e) => {
+    this.setState({isLoading: true});
     e.preventDefault();
     this.searchParamsHandler(new URLSearchParams(new FormData(e.target)));
+    this.state.authorName = this.state.searchValue;
   }
 
   render() {
     // console.log('data', this.state.data);
     // console.log('start', this.state.startDate);
-    // console.log('end', this.state.endDate);
+    // console.log('err', this.state.data);
+    // let { data } = this.state.data;
     return (
       <div>
         <SearchForm 
@@ -84,6 +91,9 @@ class EventFinder extends Component {
           data={this.state.data}
           artistData={this.state.artistData}
         />
+        <Dimmer active={this.state.isLoading}>
+          <Loader>Loading</Loader>
+        </Dimmer>
       </div>
     );
   }
