@@ -8,5 +8,33 @@
 }
 
 .AppHeader {
-  padding-top: 100px;
+  padding-top: 50px;
+}
+
+.Logo {
+  font-family: 'Roboto', sans-serif;
+  position: relative;
+  display: inline-block;
+  font-size: 40px;
+  padding-left: 80px;
+  color: #FFF;
+  font-weight: 300;
+  margin-bottom: 50px;
+}
+
+
+.Logo span {
+  font-weight: 100;
+}
+
+.Logo::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  background-image: url('./logo.png');
+  background-repeat: no-repeat;
+  background-size: contain;
 }

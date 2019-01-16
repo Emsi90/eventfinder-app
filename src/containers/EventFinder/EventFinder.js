@@ -56,7 +56,7 @@ class EventFinder extends Component {
     fetch(`https://rest.bandsintown.com/artists/${this.state.searchValue}/events?app_id=8cd32220-ea94-4c7a-a074-ec271e841187&date=${this.state.startDate}%2C${this.state.endDate}`)
     .then(response => response.json())
     .then(json => this.setState({data: json, isLoading: false}))
-    .catch(err => console.log('erah', err));
+    .catch(err => this.setState({errorMessage: err}));
     // .catch(error => this.setState({errorMessage: error, isLoading: false}));
 
     fetch(`https://rest.bandsintown.com/artists/${this.state.searchValue}?app_id=8cd32220-ea94-4c7a-a074-ec271e84118`)
@@ -71,12 +71,17 @@ class EventFinder extends Component {
     e.preventDefault();
     this.searchParamsHandler(new URLSearchParams(new FormData(e.target)));
     this.state.authorName = this.state.searchValue;
+    this.setState((prevState, props) => {
+      if(prevState.searchValue !== props.searchValue) {
+        return {data: null, artistData: null}
+      }
+    });
   }
 
   render() {
-    // console.log('data', this.state.data);
-    // console.log('start', this.state.startDate);
-    // console.log('err', this.state.data);
+    console.log('data', this.state.data);
+    console.log('artist', this.state.artistData);
+    console.log('err', this.state.errorMessage);
     // let { data } = this.state.data;
     return (
       <div>
@@ -90,6 +95,7 @@ class EventFinder extends Component {
         <EventsList 
           data={this.state.data}
           artistData={this.state.artistData}
+          errorMessage={this.state.errorMessage}
         />
         <Dimmer active={this.state.isLoading}>
           <Loader>Loading</Loader>

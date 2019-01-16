@@ -10,6 +10,7 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <header className={classes.AppHeader}>
+          <h1 className={classes.Logo}>Event <span>Finder</span></h1>
           <EventFinder />
         </header>
       </div>

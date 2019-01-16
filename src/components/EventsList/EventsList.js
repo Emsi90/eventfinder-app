@@ -6,9 +6,16 @@ import { Container } from 'semantic-ui-react';
 
 const eventsList = (props) => {
 
-  console.log(props.artistData);
-  console.log('dataaa', props.data);
+  // console.log(props.artistData);
+  console.log('arterror', !!props.errorMessage);
   const {data, artistData} = props;
+
+  let errorNameHandler = null;
+  if(data !== null && data.hasOwnProperty('errorMessage')) {
+    errorNameHandler = 'Not found this Artist...';
+  } else if(artistData !== null && artistData.hasOwnProperty('error') || !!props.errorMessage) {
+    errorNameHandler = 'Wrong artist name...';
+  }
 
   const eventItem = data => {
 
@@ -47,7 +54,7 @@ const eventsList = (props) => {
     <Container>
       <ul className={classes.eventList}>
         {Array.isArray(data) && artistData !== null ? data.map(eventItem) : 
-          data !== null && data.hasOwnProperty('errorMessage') ? data.errorMessage : 'Please search artist...'}
+          errorNameHandler ? errorNameHandler : 'Please search artist...'}
           {Array.isArray(data) && data.length === 0 ? 'No events for this artist in this time range...' : null}
       </ul>
     </Container>
