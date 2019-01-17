@@ -79,9 +79,9 @@ class EventFinder extends Component {
   }
 
   render() {
-    console.log('data', this.state.data);
-    console.log('artist', this.state.artistData);
-    console.log('err', this.state.errorMessage);
+    // console.log('data', this.state.data);
+    // console.log('artist', this.state.artistData);
+    // console.log('err', this.state.errorMessage);
     // let { data } = this.state.data;
     return (
       <div>

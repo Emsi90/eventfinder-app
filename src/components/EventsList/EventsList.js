@@ -7,7 +7,7 @@ import { Container } from 'semantic-ui-react';
 const eventsList = (props) => {
 
   // console.log(props.artistData);
-  console.log('arterror', !!props.errorMessage);
+  // console.log('arterror', !!props.errorMessage);
   const {data, artistData} = props;
 
   let errorNameHandler = null;
@@ -17,6 +17,7 @@ const eventsList = (props) => {
     errorNameHandler = 'Wrong artist name...';
   }
 
+  
   const eventItem = data => {
 
     const artist = data.lineup[0];
@@ -29,8 +30,7 @@ const eventsList = (props) => {
     const place = data.venue.name;
     const latitude = data.venue.latitude;
     const longitude = data.venue.longitude;
-    const ticketsStatus = data.offers[0].status;
-    const ticketsUrl = data.offers[0].url;
+    const tickets = data.offers[0];
     const venueUrl = data.url;
 
     return <EventItem
@@ -45,8 +45,7 @@ const eventsList = (props) => {
       place = {place}
       latitude = {latitude}
       longitude = {longitude}
-      ticketsStatus = {ticketsStatus}
-      ticketsUrl = {ticketsUrl}
+      tickets = {tickets}
       venueUrl = {venueUrl} />
   }
 

@@ -4,7 +4,7 @@ import { Icon } from 'semantic-ui-react'
 import { format } from 'date-fns';
 import classses from './EventItem.css';
 
-const eventItem = ({ artist, artistImg, artistUrl, artistFb, dateTime, city, country, place, latitude, longitude, ticketsStatus, ticketsUrl, venueUrl }) => {
+const eventItem = ({ artist, artistImg, artistUrl, artistFb, dateTime, city, country, place, latitude, longitude, tickets, venueUrl }) => {
   return (
     <li className={classses.eventItem}>
 
@@ -27,8 +27,8 @@ const eventItem = ({ artist, artistImg, artistUrl, artistFb, dateTime, city, cou
           <a href={venueUrl} className={classses.link} target="_blank"><Icon disabled name='globe' />event site</a>
         </div>
         <div className={classses.tickets}>
-          <span className={ticketsStatus === 'available' ? classses.statusOk : classses.stausNo}>{ticketsStatus}</span>
-          {ticketsStatus === 'available' ? <a href={ticketsUrl} className="ui positive button" target="_blank">Buy Ticket</a> : <a href={ticketsUrl} className="ui negative button" disabled>No Tickets</a>}
+          <span className={tickets.status === 'available' ? classses.statusOk : classses.stausNo}>{tickets.status}</span>
+          {tickets.status === 'available' ? <a href={tickets.url} className="ui positive button" target="_blank">Buy Ticket</a> : <a href={tickets.url} className="ui negative button" disabled>No Tickets</a>}
         </div>
       </div>
     </li>
